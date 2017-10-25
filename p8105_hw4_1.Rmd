@@ -3,10 +3,15 @@ title: "problem_1"
 output: html_document
 ---
 
-```{r_1}
+```{r}
 library(tidyverse)
-pups<- read_csv("./FAS_pups.csv") %>%
-       clean_names()
+library(haven)
+library(readxl)
+library(janitor)
+pups<- read_csv("./FAS_pups.csv") 
+pups %>% 
+  clean_names() %>%
+  gather(key = PD_name, value = PD_outcome, pd_ears:pd_walk)
 
 
 ```
