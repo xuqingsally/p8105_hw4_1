@@ -1,0 +1,12 @@
+---
+title: "problem_1"
+output: html_document
+---
+
+```{r_1}
+library(tidyverse)
+pups<- read_csv("./FAS_pups.csv") %>%
+       clean_names()
+
+
+```
