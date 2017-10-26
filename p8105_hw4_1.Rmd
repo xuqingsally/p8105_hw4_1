@@ -8,10 +8,27 @@ library(tidyverse)
 library(haven)
 library(readxl)
 library(janitor)
-pups<- read_csv("./FAS_pups.csv") 
-pups %>% 
+library(ggridges)
+library(ggthemes)
+
+```
+
+```{r}
+pups<- read_csv("./FAS_pups.csv")  %>% 
   clean_names() %>%
   gather(key = PD_name, value = PD_outcome, pd_ears:pd_walk)
 
+```
+
+```{r}
+pups %>%
+  ggplot(aes(x = PD_outcome,y = PD_name)) +
+  geom_density_ridges(aes(fill = PD_name), scale = .85) + theme(
+      panel.background = element_rect(fill = "transparent")
+    , plot.background = element_rect(fill = "transparent"),axis.line.x = element_line(color="black", size = 0.5),
+        axis.line.y = element_line(color="black", size = 0.5))+
+  labs( title = "Post-natal Days for Developmental Landmarks", x = "Post-natal Days", y = "Developmental Landmarks" )
 
 ```
+
+### The post-natal days for "eyes" and "ears" are more concentrated than those of "walk" and "pivot". On average, the post-natal days for "eyes" is the longest, followed by "walk", "pivot" and "ears".
